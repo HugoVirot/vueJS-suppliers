@@ -9,11 +9,15 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Suppliers from './components/SuppliersList.vue'
+import Map from './components/SuppliersMap.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Suppliers,
+    Map
   },
   methods: {
     onSuppliersListClick: function () {
