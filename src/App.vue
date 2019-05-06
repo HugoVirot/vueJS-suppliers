@@ -2,22 +2,28 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Que voulez-vous faire ?"/>
-    <button id="fournisseurs" v-on:click="onSuppliersListClick">Liste des fournisseurs</button>
+    <!--<button id="fournisseurs" v-on:click="onSuppliersListClick">Liste des fournisseurs</button>
     <button id="carte" v-on:click="onMapClick">Voir la carte</button>
+    <Suppliers></Suppliers>
+    <Map></Map>-->
+    <router-link to="/suppliers"><button>fournisseurs</button></router-link>
+    <router-link to="/map"><button>carte</button></router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 import HelloWorld from './components/HelloWorld.vue'
-import Suppliers from './components/SuppliersList.vue'
-import Map from './components/SuppliersMap.vue'
+import SuppliersList from './components/SuppliersList.vue'
+import SuppliersMap from './components/SuppliersMap.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
-    Suppliers,
-    Map
+    SuppliersList,
+    SuppliersMap
   },
   methods: {
     onSuppliersListClick: function () {

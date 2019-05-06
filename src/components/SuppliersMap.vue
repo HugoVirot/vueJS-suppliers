@@ -4,9 +4,6 @@
 
 <script>
 export default {
-  name: 'Map',
-  props: {
-    msg: String
-  }
+  name: 'SuppliersMap',
 }
 </script>

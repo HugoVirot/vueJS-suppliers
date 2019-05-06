@@ -4,9 +4,6 @@
 
 <script>
 export default {
-  name: 'Suppliers',
-  props: {
-    msg: String
-  }
+  name: 'SuppliersList',
 }
 </script>
