@@ -1,5 +1,5 @@
 <template>
-<div id="supplier" class=" container w-50 mt-2 border border-success">
+<div id="supplier" class="container-fluid mt-2 border border-success">
 <h3>Fournisseur : {{ name }}</h3>
 <h3 v-if="status===true" class="text-success">A du stock ? OK</h3>
 <h3 v-else class="text-danger">A du stock ? KO</h3>
@@ -11,6 +11,7 @@
 export default {
   name: 'Supplier',
   props: [
+    'id',
     'name',
     'status',
     'checkedAt'
