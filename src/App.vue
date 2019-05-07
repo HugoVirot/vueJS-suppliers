@@ -25,7 +25,8 @@ export default {
   components: {
     HelloWorld,
     SuppliersList,
-    SuppliersMap
+    SuppliersMap,
+    Supplier
   },
   methods: {
     onSuppliersListClick: function () {
