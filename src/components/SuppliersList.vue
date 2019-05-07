@@ -10,6 +10,7 @@
 
 <script>
 import Supplier from "./Supplier.vue";
+import { format, render, cancel, register } from 'timeago.js';
 
 export default {
   name: "SuppliersList",
@@ -23,13 +24,13 @@ export default {
           id: 1,
           name: "Fournisseur 1",
           status: true,
-          checkedAt: new Date()
+          checkedAt: format(new Date())
         },
         {
           id: 2,
           name: "Fournisseur 2",
           status: false,
-          checkedAt: new Date()
+          checkedAt: format(new Date())
         }
       ]
     }
