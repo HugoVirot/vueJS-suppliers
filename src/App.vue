@@ -24,9 +24,7 @@ export default {
   name: 'app',
   components: {
     HelloWorld,
-    SuppliersList,
-    SuppliersMap,
-    Supplier
+
   },
   methods: {
     onSuppliersListClick: function () {
