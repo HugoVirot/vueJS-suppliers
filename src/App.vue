@@ -6,8 +6,8 @@
     <button id="carte" v-on:click="onMapClick">Voir la carte</button>
     <Suppliers></Suppliers>
     <Map></Map>-->
-    <router-link to="/suppliers"><button class="btn btn-success mr-1">fournisseurs</button></router-link>
-    <router-link to="/map"><button class="btn btn-success">carte</button></router-link>
+    <router-link to="/suppliers"><button class="btn btn-success mr-1 mb-2">fournisseurs</button></router-link>
+    <router-link to="/map"><button class="btn btn-success mb-2">carte</button></router-link>
     <router-view></router-view>
   </div>
 </template>
