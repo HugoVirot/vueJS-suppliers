@@ -34,9 +34,9 @@ export default {
     axios
       .get('https://api-suppliers.herokuapp.com/api/suppliers')
       .then(response => {this.suppliers = response.data})
-      /*.catch(error => {console.log(error)
+      .catch(error => {console.log(error)
       this.errored = true})
-      .finally(() => this.loading = false)*/
+      .finally(() => this.loading = false)
   }
 }
 </script>
