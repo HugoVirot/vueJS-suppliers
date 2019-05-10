@@ -41,18 +41,8 @@ export default {
     };
   },
   created() {
-    self = this;    //redéfinition du this en tant que self (sinon pas reconnu)
-    axios
-      .get("https://api-suppliers.herokuapp.com/api/suppliers")
-      .then(response => {
-        setTimeout(function() {      //ajout d'un timeout (2s) pour voir le mot "chargement"
-          self.loading = false;      //loading devient "false" à la fin du chargement
-          self.suppliers = response.data;
-        }, 2000);                           
-      })
-      .catch(error => {             //activation du message d'erreur (errored passe à true)
-        this.errored = true;       
-      });
+    this.$root.getSuppliers(this);
+    //self = this;    //redéfinition du this en tant que self (sinon pas reconnu)
   }
 };
 </script>

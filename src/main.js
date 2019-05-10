@@ -23,6 +23,7 @@ const routes = [
 
  ]
 
+ const axios = require("axios");
  const router = new VueRouter({
   routes //'./router/index.js', //raccourci de routes: routes
   //mode: 'history'
@@ -31,6 +32,24 @@ const routes = [
 new Vue({
   router,
   render: h => h(App),
+  methods : {
+    getSuppliers: function(object) {
+      axios
+        .get("https://api-suppliers.herokuapp.com/api/suppliers")
+        .then(response => {
+          setTimeout(function() {
+            //ajout d'un timeout (2s) pour voir le mot "chargement"
+            object.loading = false; //loading devient "false" à la fin du chargement
+            object.suppliers = response.data;
+          }, 2000);
+        })
+        .catch(error => {
+          //activation du message d'erreur (errored passe à true)
+          object.errored = true;
+        });
+    }
+  }
+
 }).$mount('#app')
 
 

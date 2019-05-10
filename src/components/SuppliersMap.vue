@@ -19,7 +19,6 @@
 
 <script>
 const axios = require("axios");
-
 import { format, render, cancel, register } from "timeago.js";
 export default {
   name: "SuppliersMap",
@@ -32,16 +31,7 @@ export default {
     };
   },
   created() {
-    axios
-      .get("https://api-suppliers.herokuapp.com/api/suppliers")
-      .then(response => {
-        this.suppliers = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        this.errored = true;
-      })
-      .finally(() => (this.loading = false));
+    this.$root.getSuppliers(this);
   },
   mounted() {   //méthode 1 : fonction fléchée, méthode 2 : fonction normale, self=this
     navigator.geolocation.getCurrentPosition((position)=> {
