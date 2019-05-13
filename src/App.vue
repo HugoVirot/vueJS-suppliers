@@ -22,8 +22,6 @@ import SuppliersList from "./components/SuppliersList.vue";
 import SuppliersMap from "./components/SuppliersMap.vue";
 import Supplier from "./components/Supplier.vue";
 
-const axios = require("axios");
-
 export default {
   name: "app",
   components: {
@@ -38,6 +36,7 @@ export default {
     },
   }
 };
+
 </script>
 
 <style>
