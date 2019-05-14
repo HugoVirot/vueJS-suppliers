@@ -24,6 +24,7 @@
             </select>
           </div>
         </form>
+        <button v-on:click="deleteSupplier" class="btn btn-danger mb-2">Supprimer un fournisseur</button>
         <form>
           <!--formulaire ajout fournisseur-->
           <div
@@ -52,7 +53,6 @@
             >Valider</button>
           </div>
         </form>
-        <button></button>
       </div>
       <ul>
         <!--si option de filtrage choisie = OK -->
@@ -105,8 +105,10 @@ export default {
           latitude: this.latitude,
           longitude: this.longitude
         };
-      console.log(object);
       axios.post("https://api-suppliers.herokuapp.com/api/suppliers", object);
+    },
+    deleteSupplier: function() {
+      axios.delete("https://api-suppliers.herokuapp.com/api/suppliers/");
     },
     filteredSuppliers: function() {
       return this.suppliers.filter(supplier => {
