@@ -10,6 +10,11 @@
     <div v-if="loading">Chargement...</div>
 
     <div v-else>
+      <button
+        v-on:click="displayForm"
+        style="background-color: #41B883"
+        class="btn btn-success mr-1 mb-2"
+      >Ajouter un fournisseur</button>
       <!--affichage normal une fois le chargement terminé-->
       <div>
         <form method="post" action="SuppliersList.vue">
@@ -24,26 +29,56 @@
             </select>
           </div>
         </form>
-        <button v-on:click="deleteSupplier" class="btn btn-danger mb-2">Supprimer un fournisseur</button>
         <form>
           <!--formulaire ajout fournisseur-->
           <div
+            v-if="clicked"
             class="container pt-2 mb-3 w-50 btn justify-content-around"
             style="background-color: #41B883"
           >
             <h3 class="text-white">Ajouter un fournisseur</h3>
             <label class="text-white" for="name">Nom :</label>
-            <input v-model="name" class="form-control" type="text" placeholder="Paul Dupont" id="name">
+            <input
+              v-model="name"
+              class="form-control"
+              type="text"
+              placeholder="Paul Dupont"
+              id="name"
+            >
             <br>
             <label class="text-white" for="status">A du stock ?</label>
-            <input v-model="status" class="form-control" type="text" placeholder="true/false" id="status">
+            <input
+              v-model="status"
+              class="form-control"
+              type="text"
+              placeholder="true/false"
+              id="status"
+            >
             <br>
             <label class="text-white" for="latitude">Latitude :</label>
-            <input v-model="latitude" class="form-control" type="text" placeholder="15.50" id="latitude">
+            <input
+              v-model="latitude"
+              class="form-control"
+              type="text"
+              placeholder="15.50"
+              id="latitude"
+            >
             <br>
             <label class="text-white" for="longitude">Longitude :</label>
-            <input v-model="longitude" class="form-control" type="text" placeholder="10.65" id="longitude">
+            <input
+              v-model="longitude"
+              class="form-control"
+              type="text"
+              placeholder="10.65"
+              id="longitude"
+            >
             <br>
+            <button
+              v-on:click="hideForm" type="submit"
+              class="btn btn-danger mb-2 mr-2"
+              value="Submit"
+              >Annuler
+            </button>
             <button
               v-on:click="addSupplier"
               style="color: #41B883"
@@ -61,6 +96,7 @@
             :name="supplier.name"
             :status="supplier.status"
             :checkedAt="supplier.checkedAt"
+            :id="supplier.id"
           />
         </li>
       </ul>
@@ -82,6 +118,7 @@ export default {
   data() {
     return {
       suppliers: [],
+      clicked: false,
       loading: true,
       errored: false,
       selected: "",
@@ -89,26 +126,40 @@ export default {
       status: "",
       latitude: "",
       longitude: ""
-      /*addedSupplier: {
-      name: this.name.value,
-      status: this.status.value,
-      latitude: this.latitude.value,
-      longitude: this.longitude.value
-      }*/
     };
   },
   methods: {
     addSupplier: function() {
       var object = {
-          name: this.name,
-          status: this.status,
-          latitude: this.latitude,
-          longitude: this.longitude
-        };
-      axios.post("https://api-suppliers.herokuapp.com/api/suppliers", object);
+        name: this.name,
+        status: this.status,
+        latitude: this.latitude,
+        longitude: this.longitude,
+        checkedAt: new Date()
+      };
+      axios
+        .post("https://api-suppliers.herokuapp.com/api/suppliers", object)
+        .then(résultat => {
+          alert("le fournisseur a bien été ajouté");
+          location.reload();
+        })
+        .catch(function(error) {
+          //activation du message d'erreur (errored passe à true)
+          object.errored = true;
+        });
+    },
+    displayForm: function() {
+      return this.clicked = true;
+    },
+    hideForm: function() {
+      return this.clicked = false;
     },
     deleteSupplier: function() {
-      axios.delete("https://api-suppliers.herokuapp.com/api/suppliers/");
+      axios
+        .delete("https://api-suppliers.herokuapp.com/api/suppliers/" + this.id)
+        .then(résultat => {
+          alert("le fournisseur a bien été supprimé");
+        });
     },
     filteredSuppliers: function() {
       return this.suppliers.filter(supplier => {
@@ -123,7 +174,6 @@ export default {
   },
   created() {
     this.$root.getSuppliers(this);
-    //self = this;    //redéfinition du this en tant que self (sinon pas reconnu)
   }
 };
 </script>

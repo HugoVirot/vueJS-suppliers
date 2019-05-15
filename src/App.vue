@@ -10,17 +10,20 @@
       <button style="background-color: #41B883" class="btn btn-success mr-1 mb-2">fournisseurs</button>
     </router-link>
     <router-link to="/map">
-      <button style="background-color: #41B883" class="btn btn-success mb-2">carte</button>
+      <button style="background-color: #41B883" class="btn btn-success mr-1 mb-2">carte</button>
     </router-link>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 import HelloWorld from "./components/HelloWorld.vue";
 import SuppliersList from "./components/SuppliersList.vue";
 import SuppliersMap from "./components/SuppliersMap.vue";
 import Supplier from "./components/Supplier.vue";
+
+var clicked = false;
 
 export default {
   name: "app",
@@ -36,7 +39,6 @@ export default {
     },
   }
 };
-
 </script>
 
 <style>
@@ -46,6 +48,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>

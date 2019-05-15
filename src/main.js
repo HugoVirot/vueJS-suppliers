@@ -3,6 +3,7 @@ import App from './App.vue'
 import SuppliersList from './components/SuppliersList.vue'
 import SuppliersMap from './components/SuppliersMap.vue'
 import Supplier from './components/Supplier.vue'
+import UpdateSupplier from './components/UpdateSupplier.vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
@@ -20,7 +21,8 @@ Vue.config.productionTip = false
 const routes = [
    { path: '/suppliers', component: SuppliersList},
    { path: '/map', component: SuppliersMap},
-   { path: '/supplier', component: Supplier},
+   { path: '/supplier/', component: Supplier},
+   { path : '/updatesupplier/:id', component: UpdateSupplier}
 
  ]
 
